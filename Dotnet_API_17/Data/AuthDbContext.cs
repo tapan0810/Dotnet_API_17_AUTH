@@ -7,5 +7,6 @@ namespace Dotnet_API_17.Data
     {
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options) { }
         public DbSet<User> Users => Set<User>();
+        public DbSet<Students> Students => Set<Students>();
     }
 }

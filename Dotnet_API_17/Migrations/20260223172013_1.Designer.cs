@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dotnet_API_17.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20260222155807_1")]
+    [Migration("20260223172013_1")]
     partial class _1
     {
         /// <inheritdoc />
@@ -33,6 +33,10 @@ namespace Dotnet_API_17.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

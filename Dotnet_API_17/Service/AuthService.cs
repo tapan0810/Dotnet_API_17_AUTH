@@ -37,8 +37,8 @@ namespace Dotnet_API_17.Service
             {
                 return null;
             }
-            
-           var user = new User { Username = register.Username };
+
+            var user = new User { Username = register.Username, Role = register.Role ?? "User" };
 
             var HasPassword = new PasswordHasher<User>().HashPassword(user,register.Password);
 

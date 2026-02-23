@@ -1,5 +1,6 @@
 ﻿using Dotnet_API_17.Data;
 using Dotnet_API_17.Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ namespace Dotnet_API_17.Controllers
     [ApiController]
     public class UsersController(AuthDbContext _context) : ControllerBase
     {
+        [Authorize(Roles ="Admin")]
         [HttpGet("GetAllUsers")]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {

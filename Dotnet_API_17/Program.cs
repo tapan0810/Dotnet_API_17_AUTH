@@ -2,6 +2,7 @@ using Dotnet_API_17.Data;
 using Dotnet_API_17.Helper.JwtHelper;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using Dotnet_API_17.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AuthDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IJwtHelper, JwtHelper>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
@@ -25,6 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
